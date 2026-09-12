@@ -1,0 +1,38 @@
+name: Ansible CI/CD
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Ansible
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install ansible ansible-lint
+
+      - name: Check Ansible version
+        run: ansible --version
+
+      - name: Ansible syntax check
+        run: |
+          ansible-playbook \
+            -i inventories/dev/hosts.ini \
+            site.yml \
+            --syntax-check
+
+      - name: Ansible lint
+        run: |
+          ansible-lint site.yml
