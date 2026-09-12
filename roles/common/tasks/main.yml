@@ -1,0 +1,17 @@
+---
+- name: Display Host name
+  ansible.builtin.debug:
+    msg: "Host name: {{ ansible_hostname }}"
+
+- name: Display Operating system
+  ansible.builtin.debug:
+    msg: "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+- name: Display cpu count
+  ansible.builtin.debug:
+    msg: "CPU Count: {{ ansible_processor_vcpus }}"
+
+- name: Create directory
+  ansible.builtin.file:
+    path: "/tmp/ansible-common"
+    state: directory
+    mode: "0775"

@@ -1,0 +1,4 @@
+---
+webserver_root: /tmp/ansible-web
+webserver_port: 8080
+webserver_environment: development

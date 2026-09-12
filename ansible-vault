@@ -1,0 +1,4 @@
+---
+db_username: appuser
+db_password: MySecretPassword
+api_token: MySecretToken
