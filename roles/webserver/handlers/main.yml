@@ -1,0 +1,4 @@
+---
+- name: Restart Web Application
+  ansible.builtin.debug:
+    msg: "Web Application Restart Triggered"

@@ -1,0 +1,5 @@
+*.retry
+.vault-password
+vault-password.txt
+.ansible/
+__pycache__/

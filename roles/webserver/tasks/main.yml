@@ -1,0 +1,14 @@
+---
+- name: Create Web root
+  ansible.builtin.file:
+    path: "{{ webserver_root }}"
+    state: directory
+    mode: "0775"
+
+- name: Deploy Web configuration
+  ansible.builtin.template:
+    src: web.conf.j2
+    dest: "{{ webserver_root }}/web.conf"
+    mode: "0644"
+  notify:
+    - Restart Web Application

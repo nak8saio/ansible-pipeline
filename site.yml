@@ -1,0 +1,13 @@
+---
+- name: Configuration common settings
+  hosts: all
+
+  roles:
+    - common
+
+
+- name: Configuration webserver
+  hosts: web
+
+  roles:
+    - webserver
