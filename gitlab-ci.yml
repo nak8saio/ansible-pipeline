@@ -1,0 +1,33 @@
+stages:
+  - validate
+  - deploy
+
+variables:
+  ANSIBLE_HOST_KEY_CHECKING: "False"
+
+before_script:
+  - pyhton3 --version
+  - ansible --version
+  - ansible-lint --version
+
+syntax_check:
+  stage: validate
+  script:
+    - ansible-playbook -i inventories/dev/hosts.ini site.yml --syntax-chek
+
+  ansible-lint:
+    stage: validate
+    script:
+      - ansible-lint site.yml
+
+  dry_run:
+    stage: validate
+    script:
+      - ansible-playbook -i inventories/dev/host.ini site.yml --check
+
+  devlop_dev:
+    stage: deploy
+    script:
+      - ansible-playbook -i inventories/dev/host.ini site.yml
+    when: manual
+
