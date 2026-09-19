@@ -36,3 +36,10 @@ jobs:
       - name: Ansible lint
         run: |
           ansible-lint site.yml
+
+      - name: Ansible dry run
+        run: |
+          ansible-playbook \
+            -i inventories/dev/hosts.ini \
+            site.yml \
+            --check
